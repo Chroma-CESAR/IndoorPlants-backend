@@ -2,3 +2,4 @@ uvicorn
 fastapi
 pandas
 scipy
+scikit-learn
