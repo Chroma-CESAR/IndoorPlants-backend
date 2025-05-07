@@ -9,7 +9,7 @@ main:
 
 start-server:
     #!/bin/bash
-    venv/Scripts/python.exe uvicorn app.main:app --reload
+    venv/Scripts/python.exe -m uvicorn app.main:app --reload
 
 install-requirements:
     #!/bin/bash
