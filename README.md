@@ -21,11 +21,24 @@ A plant recommendation system based on user preferences and characteristics. Usi
 {
   "ind_pets": true,
   "ind_apartment": true,
-  "size_code": "Medium",
-  "experience_level_code": "Beginner",
-  "disponibility_level_code": "High"
+  "size_code": 0,
+  "experience_level_code": 1,
+  "disponibility_level_code": 0
 }   
 ```
+### 📝 Payload Fields Description
+
+| Field                     | Type     | Description                                                                 |
+|---------------------------|----------|-----------------------------------------------------------------------------|
+| `ind_pets`                | boolean  | Indicates whether pets are allowed (`true`) or not (`false`).              |
+| `ind_apartment`           | boolean  | Indicates whether the property is an apartment (`true`) or not (`false`).  |
+| `size_code`               | integer  | Indicates the size of the property:                                         |
+|                           |          | `0` → Small<br>`1` → Medium<br>`2` → Big<br>`3` → Very Big                 |
+| `experience_level_code`   | integer  | Indicates the user’s experience level:                                     |
+|                           |          | `0` → Beginner<br>`1` → Amateur<br>`2` → Experienced                        |
+| `disponibility_level_code`| integer  | Indicates the user’s availability:                                          |
+|                           |          | `0` → Low<br>`1` → Medium<br>`2` → High                                     |
+
 
 ## 🧰 Technologies Used
 
