@@ -45,7 +45,7 @@ A plant recommendation system based on user preferences and characteristics. Usi
 ### 1. Clone the repository
 
 ```bash
-git clone <repository-url>
+git clone https://github.com/Chroma-CESAR/IndoorPlants-backend.git
 cd IndoorPlants
 ```
 
