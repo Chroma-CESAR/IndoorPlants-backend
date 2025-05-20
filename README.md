@@ -86,17 +86,31 @@ Select the option `install-requirements` to install the required dependencies an
 ## 📁 Project Structure
 
 📦 IndoorPlants
+
 ├── 📂 app
+
 │ ├── 📂 datasets
+
 │ │ └── 📄 plants_complete.csv
+
 │ ├── 📂 pickles 
+
 │ │ └── 📄 scaler.pkl
-│ ├── 📂 schemas # Pydantic data models
+
+│ ├── 📂 schemas 
+
 │ │ ├── 📄 user_schema.py 
+
 │ │ └── 📄 plant_match_schema.py 
-│ └── 📂 services # Core service logic
+
+│ └── 📂 services 
+
 │ └── 📄 calculate_distances.py
-├── 📄 main.py # FastAPI app with POST /match endpoint
+
+├── 📄 main.py 
+
 ├── 📄 requirements.txt 
-├── 📄 justfile # Task runner configuration
+
+├── 📄 justfile
+
 └── 📄 README.md 
