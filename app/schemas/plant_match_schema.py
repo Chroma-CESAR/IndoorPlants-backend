@@ -1,9 +1,20 @@
 from pydantic import BaseModel
 
-class PlantMatch(BaseModel):
+class Plant(BaseModel):
+    index: int
+    family: str
+    categories: str
+    origin: str
+    climate: str
+    img_url: str
+    name: str
+    water_category: str
+    venomous: bool
+    size: str
+    soil: str
+    sunlight: str
+    experience_level: float
+    group_name: str
+
+class PlantMatch(Plant):
     distance: float
-    plant_index: int
-    plant_name: str
-    group: str
-    compatibility: float
-    image: str

@@ -29,33 +29,46 @@ def calculate_distances(new_user_data:UserData, scaller_local:str) -> list[Plant
     data_complete = pd.read_csv('./app/datasets/plants_complete.csv')
 
     data = data_complete[['ind_pets', 'ind_apartment', 'size_code', 'experience_level_code', 'disponibility_level_code']]
-    
-    new_user = pd.DataFrame([new_user_data.model_dump(mode="json")]) # new_user_data precisa ser umm Dict
+
+    new_user = pd.DataFrame([new_user_data.model_dump(mode="json")])  # new_user_data precisa ser um Dict
 
     new_user_normalized = scaler.transform(new_user)
-
 
     distances = cdist(new_user_normalized, data, metric='euclidean')
 
     distances_df = pd.DataFrame(distances.T, columns=['Distance'])
     distances_df['Plant Index'] = data.index
-    distances_df['Plant Name'] = data_complete.loc[data_complete.index, 'name'].values
-    distances_df['Group'] = data_complete.loc[data_complete.index, 'group_name'].values
-    distances_df['Image'] = data_complete.loc[data_complete.index, 'img_url'].values
+    distances_df['Compatibility Percentage'] = round(
+        100 - (distances_df['Distance'] / distances_df['Distance'].max() * 100), 0
+    )
 
-    distances_df['Compatibility Percentage'] = round(100 - (distances_df['Distance'] / distances_df['Distance'].max() * 100), 0)
-    distances_df = distances_df.sort_values(by='Compatibility Percentage', ascending=False).head(4)
+    # Junta com dados completos
+    distances_df = distances_df.merge(data_complete, left_on='Plant Index', right_index=True)
 
+    # Ordena e seleciona top 4
+    top_matches = distances_df.sort_values(by='Compatibility Percentage', ascending=False).head(4)
+
+    # Cria lista de PlantMatchFull
     ranking = [
         PlantMatch(
             distance=row['Distance'],
-            plant_index=row['Plant Index'],
-            plant_name=row['Plant Name'],
-            group=row['Group'],
             compatibility=row['Compatibility Percentage'],
-            image=row['Image']
+            index=row['Plant Index'],
+            family=row['family'],
+            categories=row['categories'],
+            origin=row['origin'],
+            climate=row['climate'],
+            img_url=row['img_url'],
+            name=row['name'],
+            water_category=row['water_category'],
+            venomous=row['venomous'],
+            size=row['size'],
+            soil=row['soil'],
+            sunlight=row['sunlight'],
+            experience_level=row['experience_level_code'],
+            group_name=row['group_name']
         )
-        for _, row in distances_df.iterrows()
+        for _, row in top_matches.iterrows()
         if row['Compatibility Percentage'] > 0
     ]
 
