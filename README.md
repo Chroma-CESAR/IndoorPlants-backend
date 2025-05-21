@@ -96,6 +96,12 @@ just
 
 Select the option `install-requirements` to install the required dependencies and create venv.
 
+### 4. Para rodar o projeto
+
+```bash
+uvicorn app.main:app --host 0.0.0.0 --port 8000
+```
+
 ## 📁 Project Structure
 
 📦 IndoorPlants
