@@ -52,7 +52,7 @@ def calculate_distances(new_user_data:UserData, scaller_local:str) -> list[Plant
     ranking = [
         PlantMatch(
             distance=row['Distance'],
-            compatibility=row['Compatibility Percentage'],
+            compatibility=float(row['Compatibility Percentage']),
             index=row['Plant Index'],
             family=row['family'],
             categories=row['categories'],

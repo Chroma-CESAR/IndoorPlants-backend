@@ -15,6 +15,7 @@ class Plant(BaseModel):
     sunlight: str
     experience_level: float
     group_name: str
+    compatibility: float
 
 class PlantMatch(Plant):
     distance: float
